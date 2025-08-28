@@ -1,0 +1,23 @@
+html {
+    margin: 0;
+    position: relative;
+}
+
+body {
+    marginL 0;
+    display : flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.footer{
+    margin-top: auto;   /* 메인이 늘어나면 footer 가 밑으로 이동하도록 */
+    width: 100%;
+}
