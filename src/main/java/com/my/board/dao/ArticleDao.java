@@ -1,11 +1,9 @@
 package com.my.board.dao;
 
-import com.my.board.dto.ArticleDto;
 import com.my.board.entity.Article;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,5 +19,9 @@ public class ArticleDao {
                 "ORDER BY a.id DESC";
         List<Article> articles = em.createQuery(sql).getResultList();
         return articles;
+    }
+
+    public Article getOneArticle(Long id) {
+        return em.find(Article.class, id);
     }
 }
