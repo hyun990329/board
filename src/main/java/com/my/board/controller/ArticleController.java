@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -47,5 +48,14 @@ public class ArticleController {
 
         model.addAttribute("articles", articles);
         return "/articles/show_all";
+    }
+
+    @GetMapping("{id}")
+    public String showOneArticle(@PathVariable("id") Long id, Model model) {
+        // ID 로 게시글 검색 후 DTO 로 변환해서 show.html 에 보냄
+        // comment 도 List 로 갖고 있다
+        ArticleDto dto = articleService.getOneArticle(id);
+        model.addAttribute("dto", dto);
+        return "/articles/show";
     }
 }
