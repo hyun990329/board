@@ -54,4 +54,11 @@ public class ArticleService {
     public void insertArticle(ArticleDto dto) {
         dao.insertArticle(ArticleDto.fromDto(dto));
     }
+
+    public void updateArticle(ArticleDto dto) {
+        // 1. dto 를 바로 dao 까지 보낸다
+        // 2. dto 의 ID 를 뽑아서 Article 을 찾는다
+        // 3. 찾은 Article 에 title, content 를 dto 로 변환
+        dao.updateArticle(dto);
+    }
 }
