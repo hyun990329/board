@@ -19,15 +19,14 @@ public class ArticleDto {
     // 댓글 리스트
     private List<CommentDto> comments = new ArrayList<>();
 
-    // Entity -> DTO
+    // 엔티티 -> DTO
     public static ArticleDto fromArticle(Article article) {
         return new ArticleDto(
                 article.getId(),
                 article.getTitle(),
                 article.getContent(),
                 article.getComments()
-                        .stream()
-                        .map(x -> CommentDto.fromComment(x))
+                        .stream().map(x -> CommentDto.fromComment(x))
                         .toList()
         );
     }

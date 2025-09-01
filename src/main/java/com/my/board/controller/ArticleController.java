@@ -71,7 +71,7 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    // 신규 게시글 입력창 보이기
+    // 신규 게시글 입력 창 보이기
     @GetMapping("new")
     public String inputForm(Model model) {
         model.addAttribute("dto", new ArticleDto());
@@ -82,21 +82,23 @@ public class ArticleController {
     @PostMapping("create")
     public String createArticle(ArticleDto dto, RedirectAttributes redirectAttributes) {
         articleService.insertArticle(dto);
-        redirectAttributes.addFlashAttribute("msg", "새로운 게시글이 등록 되었습니다");
+        redirectAttributes.addFlashAttribute("msg",
+                "새로운 게시글이 등록되었습니다.");
         return "redirect:/articles";
     }
 
-    // update 화면 보이기
+    // 업데이트 화면 보이기
     @GetMapping("{id}/update")
     public String viewUpdateArticle(@PathVariable("id") Long id,
-            Model model) {
-        model.addAttribute("dto", articleService.getOneArticle(id));
+                                    Model model) {
+        model.addAttribute("dto",
+                articleService.getOneArticle(id));
         return "/articles/update";
     }
 
-    // 게시글 update 처리하기
+    // 게시글 업데이트 처리
     @PostMapping("update")
-    public String updateArticle(@ModelAttribute("dto")ArticleDto dto) {
+    public String updateArticle(@ModelAttribute("dto") ArticleDto dto) {
         articleService.updateArticle(dto);
         return "redirect:/articles";
     }
