@@ -58,4 +58,30 @@ public class CommentController {
                         .message("댓글 생성 성공")
                         .build());
     }
+
+    // 3. 댓글 수정
+    // "/api/comments/{commentId}"
+    @PatchMapping("/api/comments/{commentId}")
+    public ResponseEntity<?> commentUpdate(
+            @PathVariable("commentId") Long commentId,
+            @RequestBody CommentDto dto
+    ) {
+        // 1. commentId 에 해당하는 Comment 객체 찾아옴
+        // 2. null 이면 BadRequestException
+        Map<String, Object> result = commentService.findComment(commentId);
+        CommentDto findDto = (CommentDto) result.get("dto");
+        // dto 가 비어있는 경우
+        if (ObjectUtils.isEmpty(findDto)) {
+            String message = "댓글 수정 실패";
+            throw new BadRequestException(message);
+        }
+
+        // 3. 해당 comment 수정
+        // 4. 수정할 dto 에 검색한 findDto 의 Id 를 넣어준다
+        dto.setId(findDto.getId());
+        commentService.updateComment(dto);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ApiResponse.builder().message("댓글 수정 성공").build());
+    }
 }
