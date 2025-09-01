@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 @Component
 @Transactional
 public class ArticleDao {
@@ -36,7 +35,7 @@ public class ArticleDao {
         em.flush();
     }
 
-    public void updateArticle(ArticleDto dto) {
+    public void updateAtricle(ArticleDto dto) {
         Article article = em.find(Article.class, dto.getId());
         article.setTitle(dto.getTitle());
         article.setContent(dto.getContent());

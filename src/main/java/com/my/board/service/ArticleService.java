@@ -4,7 +4,6 @@ import com.my.board.ArticleRepository;
 import com.my.board.dao.ArticleDao;
 import com.my.board.dto.ArticleDto;
 import com.my.board.entity.Article;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +12,6 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class ArticleService {
@@ -25,9 +23,9 @@ public class ArticleService {
         if (ObjectUtils.isEmpty(articles)) {
             return Collections.emptyList();
         } else {
-          return articles.stream()
-                  .map(x -> ArticleDto.fromArticle(x))
-                  .toList();
+            return articles.stream()
+                    .map(x -> ArticleDto.fromArticle(x))
+                    .toList();
         }
     }
 
@@ -56,9 +54,9 @@ public class ArticleService {
     }
 
     public void updateArticle(ArticleDto dto) {
-        // 1. dto 를 바로 dao 까지 보낸다
-        // 2. dto 의 ID 를 뽑아서 Article 을 찾는다
-        // 3. 찾은 Article 에 title, content 를 dto 로 변환
-        dao.updateArticle(dto);
+        // 1. dto를 바로 dao 까지 보낸다.
+        // 2. dto의 id를 뽑아서 게시글을 찾는다.
+        // 3. 찾은 게시글의 title, content를 dto 걸로 바꾼다.
+        dao.updateAtricle(dto);
     }
 }
